@@ -12,7 +12,9 @@ CORS(app)
 @app.route('/')
 def serve_index():
     return send_from_directory('client', 'index.html')
-    
+@app.route('/<path:filename>')
+def serve_files(filename):
+    return send_from_directory('client', filename)    
 
 # Load model
 with open('model.pkl', 'rb') as f:
