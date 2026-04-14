@@ -6,6 +6,9 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+@app.route('/')
+def home():
+    return "Autoscaling ML API is live"
 
 # Load model
 with open('server/model.pkl', 'rb') as f:
