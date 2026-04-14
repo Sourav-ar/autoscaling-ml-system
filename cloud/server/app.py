@@ -67,5 +67,5 @@ def health():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # IMPORTANT FIX
+    port = int(os.environ.get("PORT", 8080))  # IMPORTANT FIX
     app.run(host='0.0.0.0', port=port)
