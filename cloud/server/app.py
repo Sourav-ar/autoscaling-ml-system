@@ -1,17 +1,21 @@
 import pickle
+from flask import send_from_directory
 import pandas as pd
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='client', static_url_path='')
 CORS(app)
+
+
 @app.route('/')
-def home():
-    return "Autoscaling ML API is live"
+def serve_index():
+    return send_from_directory('client', 'index.html')
+    
 
 # Load model
-with open('server/model.pkl', 'rb') as f:
+with open('model.pkl', 'rb') as f:
     bundle = pickle.load(f)
 
 model = bundle['model']
