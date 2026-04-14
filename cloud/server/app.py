@@ -9,12 +9,12 @@ app = Flask(__name__, static_folder='client', static_url_path='')
 CORS(app)
 
 
-@app.route('/')
-def serve_index():
-    return send_from_directory('client', 'index.html')
-@app.route('/<path:filename>')
-def serve_files(filename):
-    return send_from_directory('client', filename)    
+from flask import send_from_directory
+
+@app.route('/', defaults={'path': 'index.html'})
+@app.route('/<path:path>')
+def serve(path):
+    return send_from_directory('client', path) 
 
 # Load model
 with open('model.pkl', 'rb') as f:
