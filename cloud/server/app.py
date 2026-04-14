@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load model
-with open('model.pkl', 'rb') as f:
+with open('server/model.pkl', 'rb') as f:
     bundle = pickle.load(f)
 
 model = bundle['model']
