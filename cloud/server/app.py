@@ -11,10 +11,12 @@ CORS(app)
 
 from flask import send_from_directory
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path:path>')
 def serve(path):
-    return send_from_directory('client', path) 
+    return send_from_directory(os.path.join(BASE_DIR, 'client'), path)
 
 # Load model
 with open('model.pkl', 'rb') as f:
